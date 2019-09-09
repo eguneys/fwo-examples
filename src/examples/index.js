@@ -1,5 +1,8 @@
 import renderer from '../fwo/renderer';
 import exLili from './lili';
+import exChroma from './chroma';
+import exStackci from './stackci';
+import exAllegory from './allegory';
 
 export default function examples(state) {
 
@@ -9,10 +12,15 @@ export default function examples(state) {
   const makeRenderer = camera => new renderer(gl, camera);
 
   let examples = {
-    lili: () => new exLili(state, makeRenderer)
+    lili: exLili,
+    chroma: exChroma,
+    stackci: exStackci,
+    allegory: exAllegory
   };
 
-  let currentExample = examples['lili']();
+  let makeExample = examples['allegory'];
+
+  let currentExample = new makeExample(state, makeRenderer);
 
   this.update = delta => {
     currentExample.update(delta);
