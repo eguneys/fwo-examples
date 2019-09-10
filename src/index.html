@@ -24,17 +24,56 @@
          height: 100%;
          background: #202020;
      }
+
+     #selectExamples {
+         display: flex;
+         flex-flow: column;
+         background: white;
+         right: 0px;
+         margin: 10px;
+         padding: 10px;
+         position: absolute;
+     }
     </style>
 </head>
 <body>
   <section>
     <div id="app"></div>
 
+    <div id="selectExamples">
+      <label>Select example</label>
+      <select id="examples"></select>
+      <button id="reload"> Reload </button>
+    </div>
+
   </section>
 
   <script>
 
-   Tetris(document.getElementById('app'), {});
+   let api = Tetris(document.getElementById('app'), {});
+
+   const examples = api.list();
+
+   const $examples = document.getElementById("examples");
+   const $reload = document.getElementById("reload");
+
+   examples.forEach(example => {
+     const $option = document.createElement('option');
+     $option.value = example;
+     $option.innerHTML = example;
+     $examples.appendChild($option);
+   });
+
+   $examples.addEventListener('change', loadSelected);
+   $reload.addEventListener("click", loadSelected);
+
+
+   function loadSelected() {
+     let selected = $examples.options[$examples.selectedIndex].value;
+
+     api.init(selected);
+   }
+   
    
   </script>
 

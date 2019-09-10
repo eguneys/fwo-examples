@@ -45,7 +45,7 @@ export function projection(width, height, depth) {
 }
 
 
-export function multiplyVec(a, v) {
+export function mulVec(a, v) {
   let res = [];
   for (let i = 0; i < 4; i++) {
     let sum = 0;

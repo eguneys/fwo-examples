@@ -28,18 +28,9 @@ export default function lili(state, makeR) {
 
   this.init = () => {
 
-    let color = colour
-        .hsb([100, 50, 40])
-        .css();
+    lines2d = [];
 
-
-    for (let i = 0; i < 10; i++) {
-      let radius = 30 + i * 2 * 10;
-      pushGeometry(geoCircle(0, 0, radius, radius * u.rand(0.8, 1.4)),
-                   u.rand(10, 30),
-                   color,
-                   u.rand(1, 4));
-    }
+    pushRotatingCircles();
   };
 
 
@@ -49,6 +40,30 @@ export default function lili(state, makeR) {
     for (let { x0, y0, x1, y1, color, lineWidth } of lines2d) {
       r.strokeStyle(color, lineWidth);
       r.drawMesh(lineSegment(x0, y0, x1, y1), { transform: 'center' });
+    }
+  };
+
+  const pushRotatingCircles = () => {
+    let color = colour;
+
+    for (let i = 0; i < 10; i++) {
+      let radius = 30 + i * 2 * 10;
+      let geometry = geoCircle(0, 0,
+                               radius,
+                               radius * u.rand(0.8, 1.4));
+
+      
+      geometry = r.transformGeometry(geometry, {
+        rotate: [u.PI*u.rand(0.0, 1.0), u.PI*u.rand(0.0, 1.0), u.PI* u.rand(0.0, 1.0)]
+      });
+
+      pushGeometry(
+        geometry,
+        u.rand(10, 30),
+        color
+          .hsb([u.rand(200, 360), 100, 60])
+          .css(),
+        u.rand(1, 4));
     }
   };
 

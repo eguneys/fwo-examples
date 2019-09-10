@@ -17,4 +17,12 @@ export function app(element, options) {
     examples.update(delta);
   }, 60).start();
 
+  return {
+    init: (example) => {
+      examples.init(example);
+    },
+    list: () => {
+      return examples.all();
+    }
+  };
 }

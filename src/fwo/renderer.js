@@ -31,6 +31,22 @@ export default function renderer(gl, camera) {
     });
   };
 
+  this.transformGeometry = ({ vertices, normals }, transform = {}) => {
+    const uMatrix = mvpMatrix(modelMatrix(transform));
+
+    vertices = vertices.map(vertex => {
+      let res = mat4.mulVec(uMatrix, [...vertex, 0.0, 1.0]);
+      return [res[0], res[1]];
+    });
+
+    normals = normals.map(vertex => {
+      let res = mat4.mulVec(uMatrix, [...vertex, 0.0, 1.0]);
+      return [res[0], res[1]];
+    });
+
+    return { vertices, normals };
+  };
+
   this.makeTransform = (name, transform) => {
     transforms[name] = modelMatrix(transform);
   };
