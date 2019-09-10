@@ -15,6 +15,13 @@ export default function renderer(gl, camera) {
     });
   };
 
+  this.strokeStyle = (color, lineWidth = 1) => {
+    g.raw(ctx => {
+      ctx.lineWidth = lineWidth;
+      ctx.strokeStyle = color;
+    });
+  };
+
   this.drawMesh = (f, transform = {}) => {
 
     const uMatrix = mvpMatrix(modelMatrix(transform));

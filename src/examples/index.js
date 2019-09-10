@@ -12,6 +12,9 @@ import exColors from './colors';
 import exSoftTextures from './softTextures';
 import exCirclePack from './circlePack';
 
+// https://manning-content.s3.amazonaws.com/download/c/85bbb4d-ee4f-46d2-9bc1-03b6f23b231f/GenArt-Sample-Intro.pdf
+import exIllines from './illines';
+
 export default function examples(state) {
 
   const { canvas } = state;
@@ -26,7 +29,8 @@ export default function examples(state) {
     allegory: exAllegory,
     colors: exColors,
     softTextures: exSoftTextures,
-    circlePack: exCirclePack
+    circlePack: exCirclePack,
+    illines: exIllines
   };
 
   let currentExample;
