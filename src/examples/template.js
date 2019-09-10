@@ -6,7 +6,7 @@ export default function lili(state, makeR) {
 
   const { width, height } = state.canvas;
 
-  const camera = new Camera({ fov: u.rad(85) });
+  const camera = new Camera({ fov: u.rad(90) });
   camera.pos = [0, 0, 10];
 
   const r = makeR(camera);
@@ -18,9 +18,21 @@ export default function lili(state, makeR) {
 
   let tick = 0;
 
-  this.update = delta => {
-
+  this.init = () => {
     r.drawMesh(clear());
+
+    r.drawMesh(layering());
+
+
+  };
+
+
+  this.update = delta => {};
+
+  const layering = () => ctx => {
+
+    
+    
 
   };
 

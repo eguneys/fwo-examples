@@ -9,6 +9,12 @@ export default function renderer(gl, camera) {
 
   this.raw = g.raw;
 
+  this.fillStyle = color => {
+    g.raw(ctx => {
+      ctx.fillStyle = color;
+    });
+  };
+
   this.drawMesh = (f, transform = {}) => {
 
     const uMatrix = mvpMatrix(modelMatrix(transform));

@@ -13,6 +13,10 @@ export function randInt(min, max) {
   return Math.floor(rand(min, max));
 }
 
+export function arand(values) {
+  return values[randInt(0, values.length)];
+}
+
 export function clamp(min, max, v) {
   return Math.min(Math.max(v, min), max);
 }
@@ -28,4 +32,30 @@ export function smoothstep(min, max, value) {
 
 export function round(v, d = 100) {
   return Math.round(v * d) / d;
+}
+
+export function map(n, start1, stop1, start2, stop2) {
+  return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
+}
+
+export function weightedChoice(weights) {
+  let r = rand(0, 1);
+
+  function step(weightSeen, remainings) {
+    let remaining = remainings[0];
+    let rest = remainings.slice(1);
+    if (remainings.length === 1) {
+      return remaining[0];
+    }
+
+    let newWeight = remaining[1],
+        endBound = weightSeen + newWeight;
+
+    if (r > weightSeen && r < endBound) {
+      return remaining[0];
+    }
+    return step(weightSeen + remaining[1], rest);
+  }
+
+  return step(0, weights);
 }
