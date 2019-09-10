@@ -2,6 +2,9 @@ import * as u from '../fwo/util';
 
 import Camera from '../fwo/camera';
 
+import * as co from 'colourz';
+
+
 export default function lili(state, makeR) {
 
   const { width, height } = state.canvas;
@@ -11,6 +14,7 @@ export default function lili(state, makeR) {
 
   const r = makeR(camera);
 
+  let colour = new co.shifter();
 
   r.makeTransform('center', {
     translate: [width * 0.5, height * 0.5, 0]

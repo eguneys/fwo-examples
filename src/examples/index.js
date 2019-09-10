@@ -12,11 +12,10 @@ import exColors from './colors';
 import exSoftTextures from './softTextures';
 import exCirclePack from './circlePack';
 
-// https://manning-content.s3.amazonaws.com/download/c/85bbb4d-ee4f-46d2-9bc1-03b6f23b231f/GenArt-Sample-Intro.pdf
 import exIllines from './illines';
-
-// https://www.reddit.com/r/proceduralgeneration/comments/cml32g/perlin_noise_based_wobbly_lines_with_color/
 import exWobblyLines from './wobblyLines';
+import exRandomShepherd from './randomShepherd';
+
 
 export default function examples(state) {
 
@@ -34,7 +33,8 @@ export default function examples(state) {
     softTextures: exSoftTextures,
     circlePack: exCirclePack,
     illines: exIllines,
-    wobblyLines: exWobblyLines
+    wobblyLines: exWobblyLines,
+    randomShepherd: exRandomShepherd
   };
 
   let currentExample;

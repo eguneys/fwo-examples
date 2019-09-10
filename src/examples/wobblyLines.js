@@ -8,6 +8,7 @@ import makeNoise from '../fwo/noise';
 import * as co from 'colourz';
 import lineDrawer from '../linedrawer';
 
+// https://www.reddit.com/r/proceduralgeneration/comments/cml32g/perlin_noise_based_wobbly_lines_with_color/
 export default function wobblyLines(state, makeR) {
 
   const { width, height } = state.canvas;

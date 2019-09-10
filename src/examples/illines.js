@@ -6,6 +6,7 @@ import * as co from 'colourz';
 
 import { normalize, scale, sub2, sum2, vec2 } from '../fwo/vector';
 
+// https://manning-content.s3.amazonaws.com/download/c/85bbb4d-ee4f-46d2-9bc1-03b6f23b231f/GenArt-Sample-Intro.pdf
 export default function lili(state, makeR) {
 
   const { width, height } = state.canvas;

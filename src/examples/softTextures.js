@@ -97,6 +97,7 @@ export default function softTextures(state, makeR) {
       .alp(1.0)
       .css();
 
+    ctx.beginPath();
     for (let i = 0; i < n; i++) {
       f(i)(ctx);
     }
