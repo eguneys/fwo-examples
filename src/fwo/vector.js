@@ -40,3 +40,7 @@ export function magnitude(v1) {
 export function normalize(v1) {
   return scale(v1, 1/magnitude(v1));
 }
+
+export function perpendicular(v1) {
+  return normalize(vec2(v1[1], -v1[0]));
+}

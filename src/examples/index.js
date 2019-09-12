@@ -4,10 +4,10 @@ import makeExamples from './examples';
 
 export default function examples(state) {
 
-  const { canvas } = state;
-  const gl = canvas.canvas.getContext('2d');
+  const { canvas, width, height } = state;
+  const gl = canvas.getContext('2d');
 
-  const makeRenderer = camera => new renderer(gl, camera);
+  const makeRenderer = camera => new renderer(gl, camera, width, height);
 
   let examples = makeExamples();
 

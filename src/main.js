@@ -8,7 +8,7 @@ export function app(element, options) {
   const canvas = new makeCanvas(element);
 
   const state = {
-    canvas
+    ...canvas
   };
 
   const examples = new makeExamples(state);

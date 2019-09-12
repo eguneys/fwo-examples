@@ -31,7 +31,19 @@ export default function lili(state, makeR) {
   };
 
 
-  this.update = delta => {};
+  this.update = delta => {
+
+    r.clear(colour.hsb([0, 50, 90]).abgr());
+
+
+    r.sandStroke(0, 0, width*0.5, height*0.5,
+                 0.5,
+                 colour
+                 .hsb([100, 50, 50])
+                 .abgr());
+
+    r.render();
+  };
 
   const layering = () => ctx => {
 

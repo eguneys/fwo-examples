@@ -1,5 +1,5 @@
-export default function graphics(gl) {
-  
+export default function graphics(gl, width, height) {
+
   this.draw = (f, { translate, rotate, scale }) => 
   this.raw(ctx => {
     ctx.save();
@@ -23,5 +23,4 @@ export default function graphics(gl) {
     ctx.filter = `drop-shadow(${xOffset}px ${yOffset}px ${radius}px ${color})`;
 
   });
-
 }

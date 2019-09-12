@@ -17,7 +17,7 @@ export function arand(values) {
   return values[randInt(0, values.length)];
 }
 
-export function clamp(min, max, v) {
+export function clamp(v, min, max) {
   return Math.min(Math.max(v, min), max);
 }
 

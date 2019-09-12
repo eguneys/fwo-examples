@@ -1,9 +1,11 @@
+import * as u from './util';
 import Graphics from './graphics';
 import * as mat4 from './matrix';
+import * as v from './vector';
 
-export default function renderer(gl, camera) {
+export default function renderer(gl, camera, width, height) {
   
-  const g = new Graphics(gl);
+  const g = new Graphics(gl, width, height);
 
   let transforms = {};
 
@@ -71,4 +73,88 @@ export default function renderer(gl, camera) {
   };
 
 
+
+  this.render = () => {
+
+    for (let i = 0; i < data.length; i++) {
+      data[i] = ram[i];
+    }
+
+    imageData.data.set(buf8);
+    
+    g.raw(ctx => {
+      // ctx.rotate(u.PI * 0.5);
+      ctx.putImageData(imageData, 0, 0);
+    });
+  };
+
+  this.clear = (color) => {
+    ram.fill(color, 0, Pagesize);
+  };
+
+  this.pset = (x, y, color) => {
+
+    x = u.clamp(x | 0, 0, width);
+    y = u.clamp(y | 0, 0, height);
+    ram[0 + y * width + x] = color;
+  };
+
+  this.line = (x0, y0, x1, y1, color) => {
+
+    let v0 = v.vec2(x0, y0),
+        v1 = v.vec2(x1, y1),
+        d1 = v.sub2(v1, v0),
+        step1 = v.normalize(d1);
+
+    let steps = v.distance(v0, v1);
+
+    let vi = v0;
+    this.pset(vi[0], vi[1], color);
+
+    for (let i = 0; i< steps; i++) {
+      vi = v.sum2(vi, step1);
+      this.pset(vi[0], vi[1], color);
+    }
+  };
+
+  this.psand = (x0, y0, sdir, width, color) => {
+    
+    let v0 = v.vec2(x0, y0),
+        v1 = v.sum2(v0, v.scale(sdir, width)),
+        v2 = v.sum2(v0, v.scale(sdir, - width));
+
+    this.line(v1[0], v1[1], v2[0], v2[1], color);
+
+  };
+
+  this.sandStroke = (x0, y0, x1, y1, width, color) => {
+
+    let v0 = v.vec2(x0, y0),
+        v1 = v.vec2(x1, y1),
+        d1 = v.sub2(v1, v0),
+        step1 = v.normalize(d1);
+
+    let p1 = v.perpendicular(d1);
+
+    let steps = v.distance(v0, v1);
+
+    let vi = v0;
+    this.psand(vi[0], vi[1], p1, width, color);
+
+    for (let i = 0; i< steps; i++) {
+      vi = v.sum2(vi, step1);
+      this.psand(vi[0], vi[1], p1, width, color);
+    }
+  };
+
+
+  const Pagesize = width * height;
+
+  const imageData = g.raw(ctx => ctx.getImageData(0, 0, width, height));
+
+  let buf = new ArrayBuffer(imageData.data.length);
+  let buf8 = new Uint8ClampedArray(buf);
+  let data = new Uint32Array(buf);
+
+  let ram = new Uint32Array(Pagesize);
 }
