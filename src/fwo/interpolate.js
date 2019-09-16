@@ -1,7 +1,7 @@
 export default function interpolator2(a, b = a.slice()) {
   return {
-    interpolate(dt) {
-      a = a.map((_, i) => interpolate(_, b[i], dt));
+    update(dt) {
+      a.forEach((_, i) => a[i] = interpolate(a[i], b[i], dt));
     },
     target(x) {
       if (x) {

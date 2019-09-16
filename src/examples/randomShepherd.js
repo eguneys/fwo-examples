@@ -49,7 +49,7 @@ export default function lili(state, makeR) {
                           value[1] + u.rand(-100, 100)));
       });
 
-    lPoints.forEach(({ pos }) => pos.interpolate(0.1));
+    lPoints.forEach(({ pos }) => pos.update(0.1));
   };
 
   const render = () => {

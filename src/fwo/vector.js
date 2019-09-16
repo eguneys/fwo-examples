@@ -1,3 +1,10 @@
+export function vecXY(v) {
+  return {
+    x: v[0],
+    y: v[1]
+  };
+}
+
 export function vec2(x, y) {
   return [x, y];
 }
@@ -43,4 +50,16 @@ export function normalize(v1) {
 
 export function perpendicular(v1) {
   return normalize(vec2(v1[1], -v1[0]));
+}
+
+/* Vector 3 */
+
+export function vec3(x, y, z) {
+  return [x, y, z];
+}
+
+export function sum3(v1, v2) {
+  return vec3(v1[0] + v2[0],
+              v1[1] + v2[1],
+              v1[2] + v2[2]);
 }

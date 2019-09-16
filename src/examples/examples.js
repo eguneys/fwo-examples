@@ -15,8 +15,12 @@ import exIllines from './illines';
 import exWobblyLines from './wobblyLines';
 import exRandomShepherd from './randomShepherd';
 
-// http://www.complexification.net/gallery/machines/happyPlace/
+// http://www.complexification.net
+import exHappyPlace from './happyPlace';
 import exSandStroke from './sandStroke';
+
+import exMesh3d from './mesh3d';
+import exMeshCubes from './meshCubes';
 
 export default function examples() {
   return {
@@ -30,6 +34,8 @@ export default function examples() {
     illines: exIllines,
     wobblyLines: exWobblyLines,
     randomShepherd: exRandomShepherd,
-    sandStroke: exSandStroke
+    sandStroke: exSandStroke,
+    mesh3d: exMesh3d,
+    meshCubes: exMeshCubes
   };
 }

@@ -1,4 +1,4 @@
-export default function graphics(gl, width, height) {
+export default function graphics(gl) {
 
   this.draw = (f, { translate, rotate, scale }) => 
   this.raw(ctx => {
