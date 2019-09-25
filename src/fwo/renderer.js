@@ -50,10 +50,7 @@ export default function renderer(gl, camera, width, height) {
 
   this.drawElements = (faces, transform = {}) => {
 
-    faces.forEach(face => {
-
-      let vertices = face.vertices();
-      let color = face.color();
+    faces.forEach(({ vertices, color }) => {
 
       const uMatrix = mvpMatrix(modelMatrix(transform));
 

@@ -108,7 +108,11 @@ function GeometryFront() {
     faces.push(face);
   };
 
-  this.faces = () => faces;
+  this.faces = () =>
+    faces.map(_ => ({
+      vertices: _.vertices(),
+      color: _.color()
+    }));
 
   this.update = delta => {
     faces.forEach(_ => _.update(delta));

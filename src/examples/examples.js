@@ -22,6 +22,8 @@ import exSandStroke from './sandStroke';
 import exMesh3d from './mesh3d';
 import exMeshCubes from './meshCubes';
 
+import exHexa from './hexa';
+
 export default function examples() {
   return {
     lili: exLili,
@@ -36,6 +38,7 @@ export default function examples() {
     randomShepherd: exRandomShepherd,
     sandStroke: exSandStroke,
     mesh3d: exMesh3d,
-    meshCubes: exMeshCubes
+    meshCubes: exMeshCubes,
+    hexa: exHexa
   };
 }
